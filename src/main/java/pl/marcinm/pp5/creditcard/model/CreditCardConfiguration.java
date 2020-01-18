@@ -15,6 +15,16 @@ public class CreditCardConfiguration {
         return new CreditCardFacade(storage);
     }
 
+    @Bean
+    CreditCardStorage inMemory() {
+        return getStorage();
+    }
+
+    @Bean
+    CreditCardStorage fileCCStorage() {
+        return new FileCreditCardStorage();
+    }
+
     private CreditCardStorage getStorage() {
         CreditCardStorage storage = new InMemoryCreditCardStorage();
         storage.add(buildRandomCard(1000));
