@@ -28,4 +28,14 @@ public class CreditCardTest {
         exceptionRule.expect(IllegalArgumentException.class);
         creditCard.setLimit(BigDecimal.valueOf(-1000));
     }
+
+    @Test
+    public void withdrawFromCard_IsPossible() {
+        CreditCard creditCard = new CreditCard();
+        creditCard.setLimit(BigDecimal.valueOf(1000));
+
+        creditCard.withdraw(BigDecimal.valueOf(200));
+
+        Assert.assertEquals(BigDecimal.valueOf(800), creditCard.getBalance());
+    }
 }
